@@ -22,3 +22,28 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Vite & React specific
+.env
+.env.*
+!.env.example
+*.local
+.cache
+.vite
+
+# TypeScript specific
+*.tsbuildinfo
+.tscache
+coverage
+
+# Tailwind specific
+.tailwind-cache
+public/styles.css
+
+# Testing
+coverage
+.nyc_output
+
+# Build
+build
+out
