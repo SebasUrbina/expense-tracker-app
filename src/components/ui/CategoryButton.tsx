@@ -2,7 +2,6 @@ import React from "react";
 import { IconType } from "react-icons";
 
 interface Props {
-    key: string | number;
     onClick: () => void;
     isActive: boolean;
     categoryName: string;
@@ -10,7 +9,6 @@ interface Props {
 }
 
 function CategoryButton({
-    key,
     onClick,
     isActive,
     IconComponent,
@@ -18,7 +16,6 @@ function CategoryButton({
 }: Props) {
     return (
         <button
-            key={key}
             type="button"
             onClick={onClick}
             className={`p-3 border rounded-lg flex flex-col items-center transition ${
