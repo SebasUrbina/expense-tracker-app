@@ -6,16 +6,18 @@ import { FaTrash } from "react-icons/fa";
 import DeleteTransactionModal from "./deleteTransactionModal";
 
 interface TransactionItemProps {
+    id: number;
     type: "income" | "expense";
     amount: number;
-    description: string;
+    description: string | null;
     categoryId: number;
     subcategory: string;
-    date: string;
+    date: string | null;
     icon?: IconType;
-    onDelete: () => void;
+    onDelete: (id: number) => void;
 }
 const TransactionItem: FC<TransactionItemProps> = ({
+    id,
     type,
     amount,
     description,
@@ -35,13 +37,14 @@ const TransactionItem: FC<TransactionItemProps> = ({
     };
 
     const confirmDelete = () => {
-        onDelete();
+        onDelete(id);
         setShowConfirm(false);
     };
 
     const cancelDelete = () => {
         setShowConfirm(false);
     };
+    
 
     return (
         <div className="flex items-center justify-between p-4 mb-2 rounded-lg hover:shadow-md transition-shadow relative group">
@@ -66,10 +69,14 @@ const TransactionItem: FC<TransactionItemProps> = ({
                         isIncome ? "text-green-600" : "text-red-600"
                     }`}
                 >
-                    {isIncome ? "+" : "-"}${Math.abs(amount).toLocaleString('es-ES')}
+                    {isIncome ? "+" : "-"}$
+                    {Math.abs(amount).toLocaleString("es-ES")}
                 </p>
                 <p className="text-sm text-gray-500">
-                    {new Date(date).toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })}
+                    {new Date(date).toLocaleDateString("es-ES", {
+                        month: "short",
+                        day: "numeric",
+                    })}
                 </p>
             </div>
 
